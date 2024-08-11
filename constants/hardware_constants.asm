@@ -43,27 +43,27 @@ DEF rTAC_262144_HZ    EQU 1
 DEF rTAC_65536_HZ     EQU 2
 DEF rTAC_16384_HZ     EQU 3
 DEF rIF               EQU $ff0f ; Interrupt Flag (R/W)
-DEF rNR10             EQU $ff10 ; Channel 1 Sweep register (R/W)
-DEF rNR11             EQU $ff11 ; Channel 1 Sound length/Wave pattern duty (R/W)
-DEF rNR12             EQU $ff12 ; Channel 1 Volume Envelope (R/W)
-DEF rNR13             EQU $ff13 ; Channel 1 Frequency lo (Write Only)
-DEF rNR14             EQU $ff14 ; Channel 1 Frequency hi (R/W)
-DEF rNR21             EQU $ff16 ; Channel 2 Sound Length/Wave Pattern Duty (R/W)
-DEF rNR22             EQU $ff17 ; Channel 2 Volume Envelope (R/W)
-DEF rNR23             EQU $ff18 ; Channel 2 Frequency lo data (W)
-DEF rNR24             EQU $ff19 ; Channel 2 Frequency hi data (R/W)
-DEF rNR30             EQU $ff1a ; Channel 3 Sound on/off (R/W)
-DEF rNR31             EQU $ff1b ; Channel 3 Sound Length
-DEF rNR32             EQU $ff1c ; Channel 3 Select output level (R/W)
-DEF rNR33             EQU $ff1d ; Channel 3 Frequency's lower data (W)
-DEF rNR34             EQU $ff1e ; Channel 3 Frequency's higher data (R/W)
-DEF rNR41             EQU $ff20 ; Channel 4 Sound Length (R/W)
-DEF rNR42             EQU $ff21 ; Channel 4 Volume Envelope (R/W)
-DEF rNR43             EQU $ff22 ; Channel 4 Polynomial Counter (R/W)
-DEF rNR44             EQU $ff23 ; Channel 4 Counter/consecutive; Initial (R/W)
-DEF rNR50             EQU $ff24 ; Channel control / ON-OFF / Volume (R/W)
-DEF rNR51             EQU $ff25 ; Selection of Sound output terminal (R/W)
-DEF rNR52             EQU $ff26 ; Sound on/off
+DEF rNR10             EQU $ff20 ; Channel 1 Sweep register (R/W)
+DEF rNR11             EQU $ff22 ; Channel 1 Sound length/Wave pattern duty (R/W)
+DEF rNR12             EQU $ff21 ; Channel 1 Volume Envelope (R/W)
+DEF rNR13             EQU $ff23 ; Channel 1 Frequency lo (Write Only)
+DEF rNR14             EQU $ff24 ; Channel 1 Frequency hi (R/W)
+DEF rNR21             EQU $ff25 ; Channel 2 Sound Length/Wave Pattern Duty (R/W)
+DEF rNR22             EQU $ff27 ; Channel 2 Volume Envelope (R/W)
+DEF rNR23             EQU $ff28 ; Channel 2 Frequency lo data (W)
+DEF rNR24             EQU $ff29 ; Channel 2 Frequency hi data (R/W)
+DEF rNR30             EQU $ff2a ; Channel 3 Sound on/off (R/W)
+DEF rNR31             EQU $ff2b ; Channel 3 Sound Length
+DEF rNR32             EQU $ff2c ; Channel 3 Select output level (R/W)
+DEF rNR33             EQU $ff2e ; Channel 3 Frequency's lower data (W)
+DEF rNR34             EQU $ff2d ; Channel 3 Frequency's higher data (R/W)
+DEF rNR41             EQU $ff40 ; Channel 4 Sound Length (R/W)
+DEF rNR42             EQU $ff42 ; Channel 4 Volume Envelope (R/W)
+DEF rNR43             EQU $ff41 ; Channel 4 Polynomial Counter (R/W)
+DEF rNR44             EQU $ff43 ; Channel 4 Counter/consecutive; Initial (R/W)
+DEF rNR50             EQU $ff44 ; Channel control / ON-OFF / Volume (R/W)
+DEF rNR51             EQU $ff46 ; Selection of Sound output terminal (R/W)
+DEF rNR52             EQU $ff45 ; Sound on/off
 DEF rWave_0           EQU $ff30
 DEF rWave_1           EQU $ff31
 DEF rWave_2           EQU $ff32

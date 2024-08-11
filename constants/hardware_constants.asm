@@ -80,20 +80,20 @@ DEF rWave_c           EQU $ff3c
 DEF rWave_d           EQU $ff3d
 DEF rWave_e           EQU $ff3e
 DEF rWave_f           EQU $ff3f
-DEF rLCDC             EQU $ff40 ; LCD Control (R/W)
+DEF rLCDC             EQU $ff10 ; LCD Control (R/W)
 DEF rLCDC_ENABLE      EQU 7
 DEF rLCDC_ENABLE_MASK EQU 1 << rLCDC_ENABLE
-DEF rSTAT             EQU $ff41 ; LCDC Status (R/W)
-DEF rSCY              EQU $ff42 ; Scroll Y (R/W)
-DEF rSCX              EQU $ff43 ; Scroll X (R/W)
-DEF rLY               EQU $ff44 ; LCDC Y-Coordinate (R)
-DEF rLYC              EQU $ff45 ; LY Compare (R/W)
-DEF rDMA              EQU $ff46 ; DMA Transfer and Start Address (W)
-DEF rBGP              EQU $ff47 ; BG Palette Data (R/W) - Non CGB Mode Only
-DEF rOBP0             EQU $ff48 ; Object Palette 0 Data (R/W) - Non CGB Mode Only
-DEF rOBP1             EQU $ff49 ; Object Palette 1 Data (R/W) - Non CGB Mode Only
-DEF rWY               EQU $ff4a ; Window Y Position (R/W)
-DEF rWX               EQU $ff4b ; Window X Position minus 7 (R/W)
+DEF rSTAT             EQU $ff11 ; LCDC Status (R/W)
+DEF rSCY              EQU $ff12 ; Scroll Y (R/W)
+DEF rSCX              EQU $ff13 ; Scroll X (R/W)
+DEF rLY               EQU $ff18 ; LCDC Y-Coordinate (R)
+DEF rLYC              EQU $ff19 ; LY Compare (R/W)
+DEF rDMA              EQU $ff1a ; DMA Transfer and Start Address (W)
+DEF rBGP              EQU $ff1b ; BG Palette Data (R/W) - Non CGB Mode Only
+DEF rOBP0             EQU $ff14 ; Object Palette 0 Data (R/W) - Non CGB Mode Only
+DEF rOBP1             EQU $ff15 ; Object Palette 1 Data (R/W) - Non CGB Mode Only
+DEF rWY               EQU $ff16 ; Window Y Position (R/W)
+DEF rWX               EQU $ff17 ; Window X Position minus 7 (R/W)
 DEF rKEY1             EQU $ff4d ; CGB Mode Only - Prepare Speed Switch
 DEF rVBK              EQU $ff4f ; CGB Mode Only - VRAM Bank
 DEF rHDMA1            EQU $ff51 ; CGB Mode Only - New DMA Source, High

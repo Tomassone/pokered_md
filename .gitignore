@@ -7,7 +7,7 @@
 *.pic
 
 # compiled roms
-*.gbc
+*.bin
 *.gb
 *.patch
 

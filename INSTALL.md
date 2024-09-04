@@ -145,7 +145,7 @@ git clone https://github.com/pret/pokered
 cd pokered
 ```
 
-To build **pokered.gbc** and **pokeblue.gbc**:
+To build **pokered.bin** and **pokeblue.bin**:
 
 ```bash
 make

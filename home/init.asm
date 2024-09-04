@@ -8,7 +8,7 @@ SoftReset::
 Init::
 ;  Program init.
 
-DEF rLCDC_DEFAULT EQU %11100011
+DEF rLCDC_DEFAULT EQU %11101001
 ; * LCD enabled
 ; * Window tile map at $9C00
 ; * Window display enabled

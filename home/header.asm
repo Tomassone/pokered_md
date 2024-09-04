@@ -1,6 +1,7 @@
 ; rst vectors (unused)
 
 SECTION "rst0", ROM0[$0000]
+	jp $0150
 	rst $38
 
 	ds $08 - @, 0 ; unused

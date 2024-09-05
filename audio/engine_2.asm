@@ -1636,9 +1636,11 @@ Audio2_PlaySound::
 	ldh [rNR32], a ; mute channel 3 (wave channel)
 	ld a, $8
 	ldh [rNR10], a ; sweep off
+	swap a ; nybble swap
 	ldh [rNR12], a ; mute channel 1 (pulse channel 1)
 	ldh [rNR22], a ; mute channel 2 (pulse channel 2)
 	ldh [rNR42], a ; mute channel 4 (noise channel)
+	swap a ; nybble swap
 	ld a, $40
 	ldh [rNR14], a ; counter mode
 	ldh [rNR24], a

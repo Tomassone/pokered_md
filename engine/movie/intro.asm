@@ -320,7 +320,7 @@ PlayShootingStar:
 	call EnableLCD
 	ld hl, rLCDC
 	res 5, [hl]
-	set 3, [hl]
+	set 2, [hl]
 	ld c, 64
 	call DelayFrames
 	farcall AnimateShootingStar

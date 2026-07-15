@@ -98,7 +98,6 @@ Audio3_ApplyMusicAffects:
 	add hl, bc
 	ld a, [hl]
 	and $f
-	and a
 	jr z, .applyVibrato
 	dec [hl] ; decrement counter
 	ret
@@ -955,6 +954,9 @@ Audio3_ApplyWavePatternAndFrequency:
 	ld b, REG_FREQUENCY_HI   ; was inc hl
 	call Audio3_GetRegisterPointer
 	ld [hl], d ; store frequency high byte
+	ld a, c
+	cp CHAN8
+	ret z
 	call Audio3_ApplyFrequencyModifier
 	ret
 
@@ -1285,7 +1287,6 @@ Audio3_GetRegisterPointer:
 	add a
 	add a
 	add b
-	dec a
 	ld hl, MD_APURegisterTable
 	add l
 	jr nc, .noCarry
@@ -1587,7 +1588,6 @@ Audio3_PlaySound::
 	ldh [rNR12], a ; mute channel 1 (pulse channel 1)
 	ldh [rNR22], a ; mute channel 2 (pulse channel 2)
 	ldh [rNR42], a ; mute channel 4 (noise channel)
-	swap a ; nybble swap
 	ld a, $40
 	ldh [rNR14], a ; counter mode
 	ldh [rNR24], a

@@ -955,6 +955,9 @@ Audio1_ApplyWavePatternAndFrequency:
 	ld b, REG_FREQUENCY_HI   ; was inc hl
 	call Audio1_GetRegisterPointer
 	ld [hl], d ; store frequency high byte
+	ld a, c
+	cp CHAN8
+	ret z
 	call Audio1_ApplyFrequencyModifier
 	ret
 
@@ -1285,7 +1288,6 @@ Audio1_GetRegisterPointer:
 	add a
 	add a
 	add b
-	dec a
 	ld hl, MD_APURegisterTable
 	add l
 	jr nc, .noCarry

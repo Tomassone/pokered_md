@@ -966,6 +966,9 @@ Audio2_ApplyWavePatternAndFrequency:
 	ld b, REG_FREQUENCY_HI   ; was inc hl
 	call Audio2_GetRegisterPointer
 	ld [hl], d ; store frequency high byte
+	ld a, c
+	cp CHAN8
+	ret z
 	; --- this section is only present in this copy of the sound engine
 	ld a, c
 	cp CHAN5
@@ -1348,7 +1351,6 @@ Audio2_GetRegisterPointer:
 	add a
 	add a
 	add b
-	dec a
 	ld hl, MD_APURegisterTable
 	add l
 	jr nc, .noCarry

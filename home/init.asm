@@ -122,6 +122,8 @@ ClearVram::
 	ld hl, STARTOF(VRAM)
 	ld bc, SIZEOF(VRAM)
 	xor a
+	ld [wFrequencyModifier], a
+	ld [wTempoModifier], a
 	jp FillMemory
 
 

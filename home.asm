@@ -86,6 +86,7 @@ INCLUDE "home/predef_text.asm"
 SECTION "MD APU Register Table", ROM0
 
 MD_APURegisterTable::
+    db $00          ; dummy for offset 0 (unused, b starts at 1)
 	db LOW(rNR11), LOW(rNR12), LOW(rNR13), LOW(rNR14)
 	db LOW(rNR21), LOW(rNR22), LOW(rNR23), LOW(rNR24)
 	db LOW(rNR31), LOW(rNR32), LOW(rNR33), LOW(rNR34)

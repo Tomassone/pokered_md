@@ -53,6 +53,7 @@ DEF HW_CH4_DISABLE_MASK EQU (~HW_CH4_ENABLE_MASK & $ff)
 	const REG_DUTY_SOUND_LEN  ; 1
 	const REG_VOLUME_ENVELOPE ; 2
 	const REG_FREQUENCY_LO    ; 3
+	const REG_FREQUENCY_HI    ; 4
 
 ; wChannelFlags1 constants
 	const_def

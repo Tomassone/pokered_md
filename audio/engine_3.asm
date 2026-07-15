@@ -217,7 +217,7 @@ Audio3_sound_ret:
 	ld [hl], a ; loads channel address to return to
 	jp Audio3_sound_ret
 .disableChannelOutput
-	ld hl, Audio3_HWChannelDisableMasks
+	ld hl, MD_HWChannelDisableMasks
 	add hl, bc
 	ldh a, [rNR51]
 	and [hl]
@@ -768,7 +768,7 @@ Audio3_note_pitch:
 	jr nz, .notChannel3
 .channel3
 	ld b, 0
-	ld hl, Audio3_HWChannelDisableMasks
+	ld hl, MD_HWChannelDisableMasks
 	add hl, bc
 	ldh a, [rNR51]
 	and [hl]
@@ -843,7 +843,7 @@ Audio3_note_pitch:
 
 Audio3_EnableChannelOutput:
 	ld b, 0
-	ld hl, Audio3_HWChannelEnableMasks
+	ld hl, MD_HWChannelEnableMasks
 	add hl, bc
 	ldh a, [rNR51]
 	or [hl] ; set this channel's bits
@@ -863,12 +863,12 @@ Audio3_EnableChannelOutput:
 ; If this is the SFX noise channel or a music channel whose corresponding
 ; SFX channel is off, apply stereo panning.
 	ld a, [wStereoPanning]
-	ld hl, Audio3_HWChannelEnableMasks
+	ld hl, MD_HWChannelEnableMasks
 	add hl, bc
 	and [hl]
 	ld d, a
 	ldh a, [rNR51]
-	ld hl, Audio3_HWChannelDisableMasks
+	ld hl, MD_HWChannelDisableMasks
 	add hl, bc
 	and [hl] ; reset this channel's output bits
 	or d ; set this channel's output bits that enabled in [wStereoPanning]
@@ -949,7 +949,8 @@ Audio3_ApplyWavePatternAndFrequency:
 	ld b, REG_FREQUENCY_LO
 	call Audio3_GetRegisterPointer
 	ld [hl], e ; store frequency low byte
-	inc hl
+	ld b, REG_FREQUENCY_HI   ; was inc hl
+	call Audio3_GetRegisterPointer
 	ld [hl], d ; store frequency high byte
 	call Audio3_ApplyFrequencyModifier
 	ret
@@ -1126,7 +1127,9 @@ Audio3_ApplyPitchSlide:
 	ld b, REG_FREQUENCY_LO
 	call Audio3_GetRegisterPointer
 	ld a, e
-	ld [hli], a
+	ld [hl], a
+	ld b, REG_FREQUENCY_HI    ; was ld [hli], a / ld [hl], d
+	call Audio3_GetRegisterPointer
 	ld [hl], d
 	ret
 .reachedTargetFrequency
@@ -1273,16 +1276,19 @@ Audio3_GetNextMusicByte:
 	ret
 
 Audio3_GetRegisterPointer:
-; hl = address of hardware sound register b for software channel c
 	ld a, c
-	ld hl, Audio3_HWChannelBaseAddresses
+	and 3
+	add a
+	add a
+	add b
+	dec a
+	ld hl, MD_APURegisterTable
 	add l
 	jr nc, .noCarry
 	inc h
 .noCarry
 	ld l, a
 	ld a, [hl]
-	add b
 	ld l, a
 	ld h, $ff
 	ret
@@ -1711,19 +1717,6 @@ Audio3_PlaySound::
 
 Audio3_CryRet:
 	sound_ret
-
-Audio3_HWChannelBaseAddresses:
-; the low bytes of each HW channel's base address
-	db HW_CH1_BASE, HW_CH2_BASE, HW_CH3_BASE, HW_CH4_BASE ; channels 0-3
-	db HW_CH1_BASE, HW_CH2_BASE, HW_CH3_BASE, HW_CH4_BASE ; channels 4-7
-
-Audio3_HWChannelDisableMasks:
-	db HW_CH1_DISABLE_MASK, HW_CH2_DISABLE_MASK, HW_CH3_DISABLE_MASK, HW_CH4_DISABLE_MASK ; channels 0-3
-	db HW_CH1_DISABLE_MASK, HW_CH2_DISABLE_MASK, HW_CH3_DISABLE_MASK, HW_CH4_DISABLE_MASK ; channels 4-7
-
-Audio3_HWChannelEnableMasks:
-	db HW_CH1_ENABLE_MASK, HW_CH2_ENABLE_MASK, HW_CH3_ENABLE_MASK, HW_CH4_ENABLE_MASK ; channels 0-3
-	db HW_CH1_ENABLE_MASK, HW_CH2_ENABLE_MASK, HW_CH3_ENABLE_MASK, HW_CH4_ENABLE_MASK ; channels 4-7
 
 Audio3_Pitches:
 INCLUDE "audio/notes.asm"

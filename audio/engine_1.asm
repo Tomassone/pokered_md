@@ -948,6 +948,7 @@ Audio1_ApplyWavePatternAndFrequency:
 	or $80 ; use counter mode (i.e. disable output when the counter reaches 0)
 	and $c7 ; zero the unused bits in the register
 	ld d, a
+	call MD_FixCh4Freq
 	ld b, REG_FREQUENCY_LO
 	call Audio1_GetRegisterPointer
 	ld [hl], e ; store frequency low byte
@@ -1126,6 +1127,7 @@ Audio1_ApplyPitchSlide:
 	ld hl, wChannelPitchSlideCurrentFrequencyHighBytes
 	add hl, bc
 	ld [hl], d
+	call MD_FixCh4Freq
 	ld b, REG_FREQUENCY_LO
 	call Audio1_GetRegisterPointer
 	ld a, e

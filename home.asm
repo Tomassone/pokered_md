@@ -113,3 +113,13 @@ MD_FixVolume::
 	and $60
 	ld d, a
 	ret
+
+MD_FixCh4Freq::
+	ld a, c
+	and 3
+	cp 3
+	ret nz
+	ld a, e
+	swap a
+	ld e, a
+	ret

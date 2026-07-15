@@ -601,6 +601,7 @@ Audio1_sfx_note:
 
 	call Audio1_GetNextMusicByte
 	ld d, a
+	call MD_FixVolume
 	ld b, REG_VOLUME_ENVELOPE
 	call Audio1_GetRegisterPointer
 	ld [hl], d
@@ -819,6 +820,7 @@ Audio1_note_pitch:
 	ld hl, wChannelVolumes
 	add hl, bc
 	ld d, [hl]
+	call MD_FixVolume
 	ld b, REG_VOLUME_ENVELOPE
 	call Audio1_GetRegisterPointer
 	ld [hl], d

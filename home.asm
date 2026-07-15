@@ -98,3 +98,18 @@ MD_HWChannelDisableMasks::
 MD_HWChannelEnableMasks::
 	db HW_CH1_ENABLE_MASK, HW_CH2_ENABLE_MASK, HW_CH3_ENABLE_MASK, HW_CH4_ENABLE_MASK
 	db HW_CH1_ENABLE_MASK, HW_CH2_ENABLE_MASK, HW_CH3_ENABLE_MASK, HW_CH4_ENABLE_MASK
+
+MD_FixVolume::
+	ld a, c
+	and 3
+	cp 2
+	jr z, .ch3
+	swap d
+	ret
+.ch3
+	ld a, d
+	cpl
+	add $20
+	and $60
+	ld d, a
+	ret

@@ -8,7 +8,7 @@
 
 # compiled roms
 *.bin
-*.md2
+*.bin
 *.patch
 
 # rgbds extras

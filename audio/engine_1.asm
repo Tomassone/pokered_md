@@ -778,10 +778,11 @@ Audio1_note_pitch:
 .notChannel3
 	ld b, REG_VOLUME_ENVELOPE
 	call Audio1_GetRegisterPointer
-	ld a, $80 ; fade in sound
-	ld [hli], a
-	inc hl
-	ld a, $80 ; restart sound
+	ld a, $80 ; MD: nibble-swapped mute envelope
+	ld [hl], a
+	ld b, REG_FREQUENCY_HI
+	call Audio1_GetRegisterPointer
+	ld a, $80 ; trigger with mute envelope
 	ld [hl], a
 .done
 	ret
@@ -1589,7 +1590,6 @@ Audio1_PlaySound::
 	ldh [rNR12], a ; mute channel 1 (pulse channel 1)
 	ldh [rNR22], a ; mute channel 2 (pulse channel 2)
 	ldh [rNR42], a ; mute channel 4 (noise channel)
-	swap a ; nybble swap
 	ld a, $40
 	ldh [rNR14], a ; counter mode
 	ldh [rNR24], a

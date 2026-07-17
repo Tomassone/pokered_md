@@ -789,7 +789,7 @@ Audio2_note_pitch:
 .notChannel3
 	ld b, REG_VOLUME_ENVELOPE
 	call Audio2_GetRegisterPointer
-	ld a, $8 ; fade in sound
+	ld a, $80 ; fade in sound
 	ld [hli], a
 	inc hl
 	ld a, $80 ; restart sound

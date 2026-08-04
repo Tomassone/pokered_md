@@ -788,12 +788,12 @@ Audio2_note_pitch:
 	jr .done
 .notChannel3
 	ld b, REG_VOLUME_ENVELOPE
-	call Audio3_GetRegisterPointer
+	call Audio2_GetRegisterPointer
 	ld a, $80 ; MD: nibble-swapped mute envelope
 	ld [hl], a
 	ld b, REG_FREQUENCY_HI
 	call Audio2_GetRegisterPointer
-	ld a, $80 ; restart sound
+	ld a, $80 ; trigger with mute envelope
 	ld [hl], a
 .done
 	ret

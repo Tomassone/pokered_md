@@ -778,7 +778,7 @@ Audio3_note_pitch:
 	ld [hl], a
 	ld b, REG_FREQUENCY_HI
 	call Audio3_GetRegisterPointer
-	ld a, $80 ; restart sound
+	ld a, $80 ; trigger with mute envelope
 	ld [hl], a
 .done
 	ret

@@ -7,8 +7,8 @@
 *.pic
 
 # compiled roms
-*.bin
-*.bin
+*.mbc5
+*.mbc5
 *.patch
 
 # rgbds extras

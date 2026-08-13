@@ -1,7 +1,7 @@
 roms := \
-	pokered.md2s \
-	pokeblue.md2s \
-	pokeblue_debug.md2s
+	pokered.md25s \
+	pokeblue.md25s \
+	pokeblue_debug.md25s
 patches := \
 	pokered.patch \
 	pokeblue.patch
@@ -48,9 +48,9 @@ RGBLINK ?= $(RGBDS)rgblink
 .PHONY: all red blue blue_debug clean tidy compare tools
 
 all: $(roms)
-red:        pokered.md2s
-blue:       pokeblue.md2s
-blue_debug: pokeblue_debug.md2s
+red:        pokered.md25s
+blue:       pokeblue.md25s
+blue_debug: pokeblue_debug.md25s
 red_vc:     pokered.patch
 blue_vc:    pokeblue.patch
 
@@ -63,10 +63,10 @@ clean: tidy
 
 tidy:
 	$(RM) $(roms) \
-	      $(roms:.md2s=.sym) \
-	      $(roms:.md2s=.map) \
+	      $(roms:.md25s=.sym) \
+	      $(roms:.md25s=.map) \
 	      $(patches) \
-	      $(patches:.patch=_vc.md2s) \
+	      $(patches:.patch=_vc.md25s) \
 	      $(patches:.patch=_vc.sym) \
 	      $(patches:.patch=_vc.map) \
 	      $(patches:%.patch=vc/%.constants.sym) \
@@ -97,7 +97,7 @@ $(pokeblue_debug_obj): RGBASMFLAGS += -D _BLUE -D _DEBUG
 $(pokered_vc_obj):     RGBASMFLAGS += -D _RED -D _RED_VC
 $(pokeblue_vc_obj):    RGBASMFLAGS += -D _BLUE -D _BLUE_VC
 
-%.patch: vc/%.constants.sym %_vc.md2s %.md2s vc/%.patch.template
+%.patch: vc/%.constants.sym %_vc.md25s %.md25s vc/%.patch.template
 	tools/make_patch $*_vc.sym $^ $@
 
 rgbdscheck.o: rgbdscheck.asm
@@ -147,7 +147,7 @@ pokeblue_debug_opt = -jsv -n 0 -k 01 -l 0x33 -m 0x13 -r 03 -t "POKEMON BLUE"
 pokered_vc_opt     = -jsv -n 0 -k 01 -l 0x33 -m 0x13 -r 03 -t "POKEMON RED"
 pokeblue_vc_opt    = -jsv -n 0 -k 01 -l 0x33 -m 0x13 -r 03 -t "POKEMON BLUE"
 
-%.md2s: $$(%_obj) layout.link
+%.md25s: $$(%_obj) layout.link
 	$(RGBLINK) -p $($*_pad) -d -m $*.map -n $*.sym -l layout.link -o $@ $(filter %.o,$^)
 	$(RGBFIX) -p $($*_pad) $($*_opt) $@
 
